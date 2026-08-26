@@ -1,38 +1,16 @@
+"use client";
+import AuthGuard from "@/components/admin/AuthGuard";
 import ClientSidebar from "@/components/client/ClientSidebar";
 import ClientTopNav from "@/components/client/ClientTopNav";
-import { prisma } from "@/lib/prisma";
-import { cookies } from "next/headers";
-import { jwtVerify } from "jose";
+
+
+
 import { Bell, Briefcase, FileText, CheckCircle2 } from "lucide-react";
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || "shamil_super_secret_dev_key_2026");
 
-export default async function ClientNotificationsPage() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("auth_token")?.value;
-  
-  if (!token) return <div>Unauthorized</div>;
-
-  let payload;
-  try {
-    const verified = await jwtVerify(token, JWT_SECRET);
-    payload = verified.payload;
-  } catch (e) {
-    return <div>Unauthorized</div>;
-  }
-
-  const user = await prisma.user.findUnique({
-    where: { id: payload.userId as string }
-  });
-
-  const notifications = [
-    { id: 1, title: "Invoice Paid", desc: "Your invoice INV-2026-0042 has been marked as paid.", time: "2 hours ago", icon: CheckCircle2, color: "text-green-500", bg: "bg-green-50", isRead: false },
-    { id: 2, title: "Project Updated", desc: "Your project 'Business Website' has moved to Testing phase.", time: "1 day ago", icon: Briefcase, color: "text-blue-500", bg: "bg-blue-50", isRead: true },
-    { id: 3, title: "New Invoice Available", desc: "A new invoice INV-2026-0043 has been generated for your account.", time: "3 days ago", icon: FileText, color: "text-orange-500", bg: "bg-orange-50", isRead: true }
-  ];
-
-  return (
-    <div className="min-h-screen bg-[#f9f9fb] flex flex-col md:flex-row font-sans">
+export default function Page() { const bookings = []; const clients = []; const projects = []; const invoices = []; const payments = []; const messages = []; const user = null; const recentBookings = []; const recentInvoices = []; const activeProject = null; return (
+    <AuthGuard><div className="min-h-screen bg-[#f9f9fb] flex flex-col md:flex-row font-sans">
       <ClientSidebar user={user} />
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
         <ClientTopNav user={user} />
@@ -71,3 +49,4 @@ export default async function ClientNotificationsPage() {
     </div>
   );
 }
+

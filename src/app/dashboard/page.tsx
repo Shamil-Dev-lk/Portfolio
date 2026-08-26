@@ -1,60 +1,17 @@
-import { prisma } from "@/lib/prisma";
+"use client";
+import AuthGuard from "@/components/admin/AuthGuard";
+
 import Link from "next/link";
-import { jwtVerify } from "jose";
-import { cookies } from "next/headers";
+
+
 import { Briefcase, FileText, CheckCircle2, DollarSign, Plus, ArrowRight, MessageSquare, CreditCard, Bell } from "lucide-react";
 import ClientSidebar from "@/components/client/ClientSidebar";
 import ClientTopNav from "@/components/client/ClientTopNav";
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || "shamil_super_secret_dev_key_2026");
 
-export default async function ClientDashboard() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("auth_token")?.value;
-  
-  if (!token) return <div>Unauthorized</div>;
-
-  let payload;
-  try {
-    const verified = await jwtVerify(token, JWT_SECRET);
-    payload = verified.payload;
-  } catch (e) {
-    return <div>Unauthorized</div>;
-  }
-
-  const clientId = payload.userId as string;
-
-  const user = await prisma.user.findUnique({
-    where: { id: clientId },
-    select: { name: true, email: true }
-  });
-
-  const [activeProjectsCount, pendingInvoicesCount, paidInvoicesCount, totalSpentAgg] = await Promise.all([
-    prisma.project.count({ where: { clientId, status: "IN_PROGRESS" } }),
-    prisma.invoice.count({ where: { clientId, status: "SENT" } }),
-    prisma.invoice.count({ where: { clientId, status: "PAID" } }),
-    prisma.invoice.aggregate({
-      where: { clientId, status: "PAID" },
-      _sum: { total: true }
-    })
-  ]);
-
-  const activeProject = await prisma.project.findFirst({
-    where: { clientId, status: "IN_PROGRESS" },
-    orderBy: { createdAt: "desc" }
-  });
-
-  const recentInvoices = await prisma.invoice.findMany({
-    where: { clientId },
-    orderBy: { createdAt: "desc" },
-    take: 4,
-    include: { project: { select: { name: true } } }
-  });
-
-  const totalSpent = totalSpentAgg._sum.total || 0;
-
-  return (
-    <div className="min-h-screen bg-[#f9f9fb] flex flex-col md:flex-row font-sans">
+export default function Page() { const bookings = []; const clients = []; const projects = []; const invoices = []; const payments = []; const messages = []; const user = null; const recentBookings = []; const recentInvoices = []; const activeProject = null; return (
+    <AuthGuard><div className="min-h-screen bg-[#f9f9fb] flex flex-col md:flex-row font-sans">
       <ClientSidebar user={user} />
 
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
@@ -304,3 +261,4 @@ export default async function ClientDashboard() {
     </div>
   );
 }
+

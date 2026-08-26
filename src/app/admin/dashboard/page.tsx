@@ -1,3 +1,7 @@
+"use client";
+import AuthGuard from "@/components/admin/AuthGuard";
+"use client";
+import AuthGuard from "@/components/admin/AuthGuard";
 import AuthGuard from "@/components/admin/AuthGuard";
 import Link from "next/link";
 import { Users, Calendar, Briefcase, DollarSign, FileText, LayoutDashboard, MessageSquare, CheckCircle2 } from "lucide-react";
@@ -36,7 +40,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <AuthGuard><div className="min-h-screen bg-[#f3f4f6] flex flex-col md:flex-row font-sans">
+    <AuthGuard><AuthGuard><div className="min-h-screen bg-[#f3f4f6] flex flex-col md:flex-row font-sans">
       <AdminSidebar />
 
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
@@ -235,3 +239,4 @@ export default function AdminDashboard() {
     </div></AuthGuard>
   );
 }
+

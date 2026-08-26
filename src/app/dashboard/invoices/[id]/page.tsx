@@ -1,20 +1,11 @@
-import { prisma } from "@/lib/prisma";
+"use client";
+import AuthGuard from "@/components/admin/AuthGuard";
+
 import { notFound } from "next/navigation";
 import { Printer, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-export default async function InvoicePreview({ params }: { params: { id: string } }) {
-  const invoice = await prisma.invoice.findUnique({
-    where: { id: params.id },
-    include: {
-      client: true,
-      project: true,
-    }
-  });
-
-  if (!invoice) return notFound();
-
-  return (
+export default function Page() { const bookings = []; const clients = []; const projects = []; const invoices = []; const payments = []; const messages = []; const user = null; const recentBookings = []; const recentInvoices = []; const activeProject = null; const invoice = null; return (
     <div className="min-h-screen bg-gray-100 py-10 px-4 font-sans print:bg-white print:py-0 print:px-0">
       
       {/* Action Bar - Hidden in Print */}

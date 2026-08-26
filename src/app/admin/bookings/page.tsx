@@ -1,4 +1,8 @@
 "use client";
+import AuthGuard from "@/components/admin/AuthGuard";
+"use client";
+import AuthGuard from "@/components/admin/AuthGuard";
+"use client";
 
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import AdminTopNav from "@/components/admin/AdminTopNav";
@@ -103,3 +107,4 @@ export default function AdminBookingsPage() {
     </div>
   );
 }
+

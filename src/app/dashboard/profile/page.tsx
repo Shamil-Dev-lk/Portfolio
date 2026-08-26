@@ -1,32 +1,16 @@
+"use client";
+import AuthGuard from "@/components/admin/AuthGuard";
 import ClientSidebar from "@/components/client/ClientSidebar";
 import ClientTopNav from "@/components/client/ClientTopNav";
-import { prisma } from "@/lib/prisma";
-import { cookies } from "next/headers";
-import { jwtVerify } from "jose";
+
+
+
 import { User, Mail, Phone, MapPin, Key, Save } from "lucide-react";
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || "shamil_super_secret_dev_key_2026");
 
-export default async function ClientProfilePage() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("auth_token")?.value;
-  
-  if (!token) return <div>Unauthorized</div>;
-
-  let payload;
-  try {
-    const verified = await jwtVerify(token, JWT_SECRET);
-    payload = verified.payload;
-  } catch (e) {
-    return <div>Unauthorized</div>;
-  }
-
-  const user = await prisma.user.findUnique({
-    where: { id: payload.userId as string }
-  });
-
-  return (
-    <div className="min-h-screen bg-[#f9f9fb] flex flex-col md:flex-row font-sans">
+export default function Page() { const bookings = []; const clients = []; const projects = []; const invoices = []; const payments = []; const messages = []; const user = null; const recentBookings = []; const recentInvoices = []; const activeProject = null; return (
+    <AuthGuard><div className="min-h-screen bg-[#f9f9fb] flex flex-col md:flex-row font-sans">
       <ClientSidebar user={user} />
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
         <ClientTopNav user={user} />
@@ -121,3 +105,4 @@ export default async function ClientProfilePage() {
     </div>
   );
 }
+

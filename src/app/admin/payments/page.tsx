@@ -1,3 +1,7 @@
+"use client";
+import AuthGuard from "@/components/admin/AuthGuard";
+"use client";
+import AuthGuard from "@/components/admin/AuthGuard";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import AdminTopNav from "@/components/admin/AdminTopNav";
 import AuthGuard from "@/components/admin/AuthGuard";
@@ -16,7 +20,7 @@ export default function AdminPaymentsPage() {
   });
 
   return (
-    <AuthGuard><div className="min-h-screen bg-[#f3f4f6] flex flex-col md:flex-row font-sans">
+    <AuthGuard><AuthGuard><div className="min-h-screen bg-[#f3f4f6] flex flex-col md:flex-row font-sans">
       <AdminSidebar />
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
         <AdminTopNav />
@@ -91,3 +95,4 @@ export default function AdminPaymentsPage() {
     </div></AuthGuard>
   );
 }
+

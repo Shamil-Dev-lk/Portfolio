@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #14A800;
+  --color-brand-dark: #0B5F20;
+  --color-background-dark: #07120B;
+  --color-background-secondary-dark: #101A14;
+  --color-background-light: #F7F9F7;
+  --color-text-primary: #1A1F1B;
+  --color-text-secondary: #6B756E;
+  
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  
+  --animate-infinite-scroll: infinite-scroll 35s linear infinite;
+  
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+:root {
+  --background: var(--color-background-light);
+  --foreground: var(--color-text-primary);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}

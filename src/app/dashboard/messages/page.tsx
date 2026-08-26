@@ -1,62 +1,19 @@
 "use client";
-import AuthGuard from "@/components/admin/AuthGuard";
 import ClientSidebar from "@/components/client/ClientSidebar";
 import ClientTopNav from "@/components/client/ClientTopNav";
-
-
-
-import { MessageSquare, Send } from "lucide-react";
-
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || "shamil_super_secret_dev_key_2026");
-
-export default function Page() { const bookings = []; const clients = []; const projects = []; const invoices = []; const payments = []; const messages = []; const user = null; const recentBookings = []; const recentInvoices = []; const activeProject = null; return (
-    <AuthGuard><div className="min-h-screen bg-[#f9f9fb] flex flex-col md:flex-row font-sans">
-      <ClientSidebar user={user} />
-      <div className="flex-1 flex flex-col h-screen overflow-hidden">
-        <ClientTopNav user={user} />
-        <div className="flex-1 overflow-y-auto p-6 lg:p-8 custom-scrollbar">
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h1 className="text-2xl font-extrabold text-gray-900">Messages</h1>
-              <p className="text-sm text-gray-500 mt-1">Chat directly with the admin.</p>
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-10 max-w-4xl h-[600px] flex flex-col">
-            {/* Chat Area */}
-            <div className="flex-1 overflow-y-auto p-6 bg-gray-50/30 flex flex-col gap-4">
-              {messages.length === 0 ? (
-                <div className="flex-1 flex items-center justify-center flex-col text-gray-400">
-                  <MessageSquare className="w-12 h-12 text-gray-200 mb-2" />
-                  <p className="text-sm font-medium">No messages yet. Send a message to start the conversation.</p>
-                </div>
-              ) : (
-                messages.map((msg) => {
-                  const isMine = msg.senderId === clientId;
-                  return (
-                    <div key={msg.id} className={`flex ${isMine ? 'justify-end' : 'justify-start'}`}>
-                      <div className={`max-w-[75%] rounded-2xl px-5 py-3 text-sm ${isMine ? 'bg-brand-primary text-white rounded-tr-sm' : 'bg-white border border-gray-200 text-gray-800 rounded-tl-sm shadow-sm'}`}>
-                        <p>{msg.content}</p>
-                        <div className={`text-[9px] mt-1 text-right ${isMine ? 'text-green-100' : 'text-gray-400'}`}>
-                          {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
-            
-            <div className="p-4 bg-white border-t border-gray-100 flex gap-2">
-              <input type="text" placeholder="Type your message..." disabled className="flex-1 border border-gray-200 rounded-xl px-4 py-3 outline-none text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all" />
-              <button disabled className="bg-brand-primary/50 text-white px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2 cursor-not-allowed">
-                <Send className="w-4 h-4" /> Send
-              </button>
-            </div>
+export default function Page() {
+  return (
+    <div className="min-h-screen bg-[#f3f4f6]">
+      <ClientSidebar />
+      <div className="lg:ml-64 transition-all duration-300">
+        <ClientTopNav user={{ name: "Client", email: "client@example.com" }} />
+        <div className="p-4 sm:p-6 lg:p-8 mt-16 lg:mt-0">
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-8 text-center">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Under Construction</h2>
+            <p className="text-gray-500">This client portal feature is being rewritten for static export.</p>
           </div>
         </div>
       </div>
     </div>
   );
 }
-

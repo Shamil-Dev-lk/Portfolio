@@ -56,7 +56,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100 shadow-xl border border-gray-100 relative">
               <img 
-                src="/shamildev-crm/about-portrait.jpg" 
+                src="/portfolio/about-portrait.jpg" 
                 alt="Shamil - Web Developer" 
                 className="w-full h-full object-cover object-top"
               />

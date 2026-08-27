@@ -56,7 +56,7 @@ export default function Hero() {
         <div className="lg:flex-shrink-0 lg:flex-grow relative lg:w-1/2 flex justify-center mt-10 lg:mt-0">
           <div className="relative w-full max-w-lg lg:max-w-xl xl:max-w-2xl transform hover:scale-105 transition-transform duration-700 ease-out">
              <img 
-               src="/hero-graphic.jpg" 
+               src="/shamildev-crm/hero-graphic.jpg" 
                alt="Shamil Hero Graphic" 
                className="w-full h-auto object-contain" 
              />

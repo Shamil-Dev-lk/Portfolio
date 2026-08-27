@@ -47,7 +47,7 @@ export default function ServiceCards() {
         <div className="flex w-fit animate-infinite-scroll hover:[animation-play-state:paused]">
           {loopServices.map((service, index) => (
             <div 
-              key={${service.id}-}
+              key={`${service.id}-${index}`}
               className="w-[280px] flex-shrink-0 px-3"
             >
               <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-1 text-center group flex flex-col items-center h-full">

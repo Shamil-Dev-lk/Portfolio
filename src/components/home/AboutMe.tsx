@@ -9,7 +9,7 @@ export default function AboutMe() {
         {/* Left Image */}
         <div className="w-full lg:w-1/2 relative flex justify-center">
           <div className="relative w-full max-w-md mx-auto transform hover:scale-105 transition-transform duration-700 ease-out">
-            <img src="/portfolio/about-graphic.jpg" alt="About Shamil" className="w-full h-auto object-contain" />
+            <img src="/Portfolio/about-graphic.jpg" alt="About Shamil" className="w-full h-auto object-contain" />
           </div>
         </div>
 

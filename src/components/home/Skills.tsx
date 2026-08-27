@@ -74,7 +74,7 @@ export default function Skills() {
               {techLogos.map((tech) => (
                 <div key={tech.name} className="aspect-square bg-white border border-gray-100 rounded-xl flex items-center justify-center p-3 shadow-sm hover:shadow-md transition-shadow group flex-col gap-1">
                    <img 
-                     src={`/portfolio/icons/${tech.slug}.svg`} 
+                     src={`/Portfolio/icons/${tech.slug}.svg`} 
                      alt={tech.name} 
                      className="w-8 h-8 opacity-90 group-hover:opacity-100 transition-all group-hover:scale-110 duration-300"
                    />

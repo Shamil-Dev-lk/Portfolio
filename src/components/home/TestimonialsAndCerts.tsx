@@ -45,19 +45,19 @@ export default function TestimonialsAndCerts() {
                 <div 
                   key={testimonial.id} 
                   className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm relative flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-brand-primary/30 group"
-                  style={{ animationDelay: ${i * 150}ms }}
+                  style={{ animationDelay: `${i * 150}ms` }}
                 >
                   <Quote className="absolute top-4 right-4 text-gray-100 w-8 h-8 rotate-180 group-hover:text-brand-primary/10 transition-colors duration-500" />
                   <p className="text-gray-600 text-[11px] leading-relaxed mb-4 relative z-10 flex-1">
-                    "{testimonial.content}"
+                    "testimonial.content"
                   </p>
                   <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={w-3 h-3 } />
+                    {[...Array(5)].map((_, ii) => (
+                      <Star key={ii} className={`w-3 h-3 ${ii < testimonial.rating ? 'fill-[#FACC15] text-[#FACC15]' : 'text-gray-200'}`} />
                     ))}
                   </div>
                   <div className="flex items-center gap-3">
-                    <img src={testimonial.image || https://ui-avatars.com/api/?name=&background=random} alt={testimonial.clientName} className="w-8 h-8 rounded-full object-cover ring-2 ring-transparent group-hover:ring-brand-primary/20 transition-all" />
+                    <img src={testimonial.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(testimonial.clientName)}&background=random`} alt={testimonial.clientName} className="w-8 h-8 rounded-full object-cover ring-2 ring-transparent group-hover:ring-brand-primary/20 transition-all" />
                     <div>
                       <h4 className="text-xs font-bold text-gray-900">{testimonial.clientName}</h4>
                       <p className="text-[10px] text-gray-500">{testimonial.role || testimonial.company}</p>
@@ -66,13 +66,13 @@ export default function TestimonialsAndCerts() {
                 </div>
               ))}
               
-              {testimonials.length === 0 && (
+              {testimonials.length --= 0 && (
                 <p className="text-sm text-gray-500 italic col-span-2">No testimonials published yet.</p>
               )}
             </div>
           </div>
 
-          {/* Certifications (7 columns) */}
+          ${/* Certifications (7 columns) */}
           <div className="lg:col-span-7 flex flex-col lg:pl-4 mt-12 lg:mt-0">
             <h3 className="text-brand-primary font-bold tracking-wider text-xs mb-2 uppercase">Certifications</h3>
             <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 mb-8">Certifications & Achievements</h2>
@@ -81,7 +81,6 @@ export default function TestimonialsAndCerts() {
               {certifications.map((cert) => (
                 <div key={cert.id} className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm flex flex-col group transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-brand-primary/40 cursor-pointer">
                   <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 border-b border-gray-100 aspect-[4/3] flex items-center justify-center relative overflow-hidden group-hover:from-brand-primary/5 group-hover:to-brand-primary/10 transition-colors duration-500">
-                     {/* Decorative certificate placeholder */}
                      <div className="w-[80%] h-[70%] bg-white border border-gray-200 shadow-md rounded flex flex-col p-2 relative transform group-hover:scale-105 group-hover:-rotate-2 transition-all duration-500">
                         <div className="w-full border-b border-gray-200 pb-1 mb-1 flex justify-center"><div className="w-1/2 h-1 bg-gray-200 rounded-full"></div></div>
                         <div className="w-3/4 h-1 bg-gray-100 rounded-full mb-1"></div>
@@ -114,3 +113,4 @@ export default function TestimonialsAndCerts() {
     </section>
   );
 }
+

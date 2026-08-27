@@ -66,13 +66,13 @@ export default function TestimonialsAndCerts() {
                 </div>
               ))}
               
-              {testimonials.length --= 0 && (
+              {testimonials.length === 0 && (
                 <p className="text-sm text-gray-500 italic col-span-2">No testimonials published yet.</p>
               )}
             </div>
           </div>
 
-          ${/* Certifications (7 columns) */}
+          {/* Certifications (7 columns) */}
           <div className="lg:col-span-7 flex flex-col lg:pl-4 mt-12 lg:mt-0">
             <h3 className="text-brand-primary font-bold tracking-wider text-xs mb-2 uppercase">Certifications</h3>
             <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 mb-8">Certifications & Achievements</h2>
